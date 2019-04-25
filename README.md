@@ -7,7 +7,7 @@ PureMVC is a lightweight framework for creating applications based upon the clas
 
 ## Installation
 ```
-go get github.com/puremvc/puremvc-go-multicore-framework
+require github.com/puremvc/puremvc-go-multicore-framework v1.0.0
 ```
 
 ## Utilities
