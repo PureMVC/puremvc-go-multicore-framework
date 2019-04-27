@@ -17,32 +17,32 @@ import (
 	"testing"
 )
 
-/**
-  Tests operation of a `MacroCommand`.
+/*
+Tests operation of a MacroCommand.
 
-  This test creates a new `Notification`, adding a
-  `MacroCommandTestVO` as the body.
-  It then creates a `MacroCommandTestCommand` and invokes
-  its `execute` method, passing in the
-  `Notification`.
+This test creates a new Notification, adding a
+MacroCommandTestVO as the body.
+It then creates a MacroCommandTestCommand and invokes
+its execute method, passing in the
+Notification.
 
-  The `MacroCommandTestCommand` has defined an
-  `initializeMacroCommand` method, which is
-  called automatically by its constructor. In this method
-  the `MacroCommandTestCommand` adds 2 SubCommands
-  to itself, `MacroCommandTestSub1Command` and
-  `MacroCommandTestSub2Command`.
+The MacroCommandTestCommand has defined an
+initializeMacroCommand method, which is
+called automatically by its constructor. In this method
+the MacroCommandTestCommand adds 2 SubCommands
+to itself, MacroCommandTestSub1Command and
+MacroCommandTestSub2Command.
 
-  The `MacroCommandTestVO` has 2 result properties,
-  one is set by `MacroCommandTestSub1Command` by
-  multiplying the input property by 2, and the other is set
-  by `MacroCommandTestSub2Command` by multiplying
-  the input property by itself.
+The MacroCommandTestVO has 2 result properties,
+one is set by MacroCommandTestSub1Command by
+multiplying the input property by 2, and the other is set
+by MacroCommandTestSub2Command by multiplying
+the input property by itself.
 
-  Success is determined by evaluating the 2 result properties
-  on the `MacroCommandTestVO` that was passed to
-  the `MacroCommandTestCommand` on the Notification
-  body.
+Success is determined by evaluating the 2 result properties
+on the MacroCommandTestVO that was passed to
+the MacroCommandTestCommand on the Notification
+body.
 */
 func TestMacroCommandExecute(t *testing.T) {
 	// Create the VO
@@ -67,7 +67,7 @@ func TestMacroCommandExecute(t *testing.T) {
 	}
 }
 
-/**
+/*
   Testing MacroCommand via Controller and notify via View
 */
 func TestMacroCommandExecuteViaControllerView(t *testing.T) {

@@ -13,14 +13,14 @@ import (
 	"github.com/puremvc/puremvc-go-multicore-framework/src/patterns/command"
 )
 
-/**
+/*
 A MacroCommand subclass used by MacroCommandTest.
 */
 type MacroCommandTestCommand struct {
 	command.MacroCommand
 }
 
-/**
+/*
   Initialize the MacroCommandTestCommand by adding
   its 2 SubCommands.
 */

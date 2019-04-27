@@ -8,7 +8,7 @@
 
 package command
 
-/**
+/*
 A utility class used by SimpleCommandTest.
 */
 type SimpleCommandTestVO struct {

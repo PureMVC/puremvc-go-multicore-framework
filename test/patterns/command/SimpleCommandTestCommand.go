@@ -10,16 +10,16 @@ package command
 
 import "github.com/puremvc/puremvc-go-multicore-framework/src/interfaces"
 
-/**
+/*
 A SimpleCommand subclass used by SimpleCommandTest.
 */
 type SimpleCommandTestCommand struct {
 }
 
-/**
+/*
   Fabricate a result by multiplying the input by 2
 
-  - parameter event: the `INotification` carrying the `SimpleCommandTestVO`
+  - parameter event: the INotification carrying the SimpleCommandTestVO
 */
 func (command SimpleCommandTestCommand) execute(notification interfaces.INotification) {
 	var vo = notification.Body().(*SimpleCommandTestVO)

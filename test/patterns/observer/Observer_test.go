@@ -14,7 +14,7 @@ import (
 	"testing"
 )
 
-/**
+/*
 Tests PureMVC Observer class.
 
 Since the Observer encapsulates the interested object's
@@ -26,7 +26,7 @@ notification method and context and call the notifyObserver
 method.
 */
 
-/**
+/*
   Tests observer class when initialized by accessor methods.
 */
 func TestObserverAccessor(t *testing.T) {
@@ -51,7 +51,7 @@ func TestObserverAccessor(t *testing.T) {
 	}
 }
 
-/**
+/*
   Tests observer class when initialized by constructor.
 */
 func TestObserverConstructor(t *testing.T) {
@@ -74,7 +74,7 @@ func TestObserverConstructor(t *testing.T) {
 	}
 }
 
-/**
+/*
   Tests the compareNotifyContext method of the Observer class
 */
 func TestCompareNotifyContext(t *testing.T) {
@@ -97,7 +97,7 @@ type Test struct {
 	Var int
 }
 
-/**
+/*
   A function that is used as the observer notification
   method. It multiplies the input number by the
   observerTestVar value

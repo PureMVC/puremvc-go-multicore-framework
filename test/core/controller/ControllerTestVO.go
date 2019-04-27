@@ -8,7 +8,7 @@
 
 package controller
 
-/**
+/*
 A utility class used by ControllerTest.
 */
 type ControllerTestVO struct {

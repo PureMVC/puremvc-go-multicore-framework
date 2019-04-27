@@ -16,7 +16,7 @@ import (
 	"testing"
 )
 
-/**
+/*
 Test the PureMVC Facade class.
 */
 
@@ -30,7 +30,7 @@ func TestGetInstance(t *testing.T) {
 	}
 }
 
-/**
+/*
   Tests Command registration and execution via the Facade.
 
   This test gets a Multiton Facade instance
@@ -60,7 +60,7 @@ func TestRegisterCommandAndSendNotification(t *testing.T) {
 	}
 }
 
-/**
+/*
   Tests Command removal via the Facade.
 
   This test gets a Multiton Facade instance
@@ -91,10 +91,10 @@ func TestRegisterAndRemoveCommandAndSendNotification(t *testing.T) {
 	}
 }
 
-/**
+/*
   Tests the regsitering and retrieving Model proxies via the Facade.
 
-  Tests `registerProxy` and `retrieveProxy` in the same test.
+  Tests registerProxy and retrieveProxy in the same test.
   These methods cannot currently be tested separately
   in any meaningful way other than to show that the
   methods do not throw exception when called.
@@ -128,7 +128,7 @@ func TestRegisterAndRetrieveProxy(t *testing.T) {
 	}
 }
 
-/**
+/*
   Tests the removing Proxies via the Facade.
 */
 func TestRegisterAndRemoveProxy(t *testing.T) {
@@ -155,7 +155,7 @@ func TestRegisterAndRemoveProxy(t *testing.T) {
 	}
 }
 
-/**
+/*
   Tests registering, retrieving and removing Mediators via the Facade.
 */
 func TestRegisterRetrieveAndRemoveMediator(t *testing.T) {
@@ -182,7 +182,7 @@ func TestRegisterRetrieveAndRemoveMediator(t *testing.T) {
 	}
 }
 
-/**
+/*
   Tests the hasProxy Method
 */
 func TestHasProxy(t *testing.T) {
@@ -197,7 +197,7 @@ func TestHasProxy(t *testing.T) {
 	}
 }
 
-/**
+/*
   Tests the hasMediator Method
 */
 func TestHasMediator(t *testing.T) {
@@ -220,7 +220,7 @@ func TestHasMediator(t *testing.T) {
 	}
 }
 
-/**
+/*
   Test hasCommand method.
 */
 func TestHasCommand(t *testing.T) {
@@ -244,7 +244,7 @@ func TestHasCommand(t *testing.T) {
 	}
 }
 
-/**
+/*
   Tests the hasCore and removeCore methods
 */
 func TestHasCoreAndRemoveCore(t *testing.T) {

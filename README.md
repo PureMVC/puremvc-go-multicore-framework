@@ -14,6 +14,7 @@ require github.com/puremvc/puremvc-go-multicore-framework v1.0.0
 * [Pipes](https://github.com/PureMVC/puremvc-go-util-pipes/wiki)
 
 ## Platforms / Technologies
+* [Go](https://en.wikipedia.org/wiki/Go_(programming_language))
 * [FreeBSD](https://en.wikipedia.org/wiki/FreeBSD)
 * [Linux](https://en.wikipedia.org/wiki/Linux)
 * [MacOS](https://en.wikipedia.org/wiki/MacOS)

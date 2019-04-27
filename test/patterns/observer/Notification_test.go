@@ -13,11 +13,11 @@ import (
 	"testing"
 )
 
-/**
+/*
 Test the PureMVC Notification class.
 */
 
-/**
+/*
   Tests setting and getting the name using Notification class accessor methods.
 */
 func TestNameAccessors(t *testing.T) {
@@ -27,7 +27,7 @@ func TestNameAccessors(t *testing.T) {
 	}
 }
 
-/**
+/*
   Tests setting and getting the body using Notification class accessor methods.
 */
 func TestBodyAccessors(t *testing.T) {
@@ -56,7 +56,7 @@ func TestConstructor(t *testing.T) {
 	}
 }
 
-/**
+/*
   Tests the toString method of the notification
 */
 func TestToString(t *testing.T) {

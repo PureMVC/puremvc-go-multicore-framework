@@ -13,14 +13,14 @@ import (
 	"github.com/puremvc/puremvc-go-multicore-framework/src/patterns/command"
 )
 
-/**
+/*
 A SimpleCommand subclass used by ControllerTest.
 */
 type ControllerTestCommand2 struct {
 	command.SimpleCommand
 }
 
-/**
+/*
   Fabricate a result by multiplying the input by 2 and adding to the existing result
 
   This tests accumulation effect that would show if the command were executed more than once.

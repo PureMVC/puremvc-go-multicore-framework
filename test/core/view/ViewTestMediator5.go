@@ -15,7 +15,7 @@ import (
 
 const ViewTestMediator5_NAME = "viewTestMediator5"
 
-/**
+/*
 A Mediator class used by ViewTest.
 */
 type ViewTestMediator5 struct {

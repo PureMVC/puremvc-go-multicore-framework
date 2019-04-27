@@ -15,7 +15,7 @@ import (
 	"testing"
 )
 
-/**
+/*
 Test the PureMVC Model class.
 */
 
@@ -29,10 +29,10 @@ func TestGetInstance(t *testing.T) {
 	}
 }
 
-/**
+/*
   Tests the proxy registration and retrieval methods.
 
-  Tests `registerProxy` and `retrieveProxy` in the same test.
+  Tests registerProxy and retrieveProxy in the same test.
   These methods cannot currently be tested separately
   in any meaningful way other than to show that the
   methods do not throw exception when called.
@@ -62,7 +62,7 @@ func TestRegisterAndRetrieveProxy(t *testing.T) {
 	}
 }
 
-/**
+/*
   Tests the proxy removal method.
 */
 func TestRegisterAndRemoveProxy(t *testing.T) {
@@ -88,7 +88,7 @@ func TestRegisterAndRemoveProxy(t *testing.T) {
 	}
 }
 
-/**
+/*
   Tests the hasProxy Method
 */
 func TestHasProxy(t *testing.T) {
@@ -113,7 +113,7 @@ func TestHasProxy(t *testing.T) {
 	}
 }
 
-/**
+/*
   Tests that the Model calls the onRegister and onRemove methods
 */
 func TestOnRegisterAndOnRemove(t *testing.T) {

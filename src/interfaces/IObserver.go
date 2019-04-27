@@ -8,14 +8,17 @@
 
 package interfaces
 
-/**
+/*
 The interface definition for a PureMVC Observer.
 
-In PureMVC, `IObserver` implementors assume these responsibilities:
+In PureMVC, IObserver implementors assume these responsibilities:
 
 * Encapsulate the notification (callback) method of the interested object.
+
 * Encapsulate the notification context (self) of the interested object.
+
 * Provide methods for setting the interested object' notification method and context.
+
 * Provide a method for notifying the interested object.
 
 PureMVC does not rely upon underlying event
@@ -30,37 +33,37 @@ MVC triad.
 
 An Observer is an object that encapsulates information
 about an interested object with a notification method that
-should be called when an `INotification` is broadcast. The Observer then
+should be called when an INotification is broadcast. The Observer then
 acts as a proxy for notifying the interested object.
 
-Observers can receive `Notification`s by having their
-`notifyObserver` method invoked, passing
-in an object implementing the `INotification` interface, such
-as a subclass of `Notification`.
+Observers can receive Notifications by having their
+notifyObserver method invoked, passing
+in an object implementing the INotification interface, such
+as a subclass of Notification.
 */
 type IObserver interface {
-	/**
+	/*
 	  Set the notification method.
 
-	  The notification method should take one parameter of type `INotification`
+	  The notification method should take one parameter of type INotification
 
 	  - parameter notifyMethod: the notification (callback) method of the interested object
 	*/
 	SetNotifyMethod(notifyMethod func(notification INotification))
 
-	/**
+	/*
 	  Set the notification context (self) of the interested object.
 	*/
 	SetNotifyContext(notifyContext interface{})
 
-	/**
+	/*
 	  Notify the interested object.
 
-	  - parameter notification: the `INotification` to pass to the interested object's notification method
+	  - parameter notification: the INotification to pass to the interested object's notification method
 	*/
 	NotifyObserver(notification INotification)
 
-	/**
+	/*
 	  Compare the given object to the notificaiton context object.
 
 	  - parameter object: the object to compare.

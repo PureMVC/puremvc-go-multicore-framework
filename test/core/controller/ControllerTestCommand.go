@@ -13,14 +13,14 @@ import (
 	"github.com/puremvc/puremvc-go-multicore-framework/src/patterns/command"
 )
 
-/**
+/*
   A SimpleCommand subclass used by ControllerTest.
 */
 type ControllerTestCommand struct {
 	command.SimpleCommand
 }
 
-/**
+/*
   Fabricate a result by multiplying the input by 2
 
   - parameter note: the note carrying the ControllerTestVO

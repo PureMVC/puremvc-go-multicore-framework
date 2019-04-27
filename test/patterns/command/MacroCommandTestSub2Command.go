@@ -17,10 +17,10 @@ type MacroCommandTestSub2Command struct {
 	command.MacroCommand
 }
 
-/**
+/*
   Fabricate a result by multiplying the input by itself
 
-  - parameter event: the `IEvent` carrying the `MacroCommandTestVO`
+  - parameter event: the IEvent carrying the MacroCommandTestVO
 */
 func (command *MacroCommandTestSub2Command) Execute(notification interfaces.INotification) {
 	var vo = notification.Body().(*MacroCommandTestVO)

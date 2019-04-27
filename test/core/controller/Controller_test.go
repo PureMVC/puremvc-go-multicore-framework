@@ -16,11 +16,11 @@ import (
 	"testing"
 )
 
-/**
+/*
 Test the PureMVC Controller class.
 */
 
-/**
+/*
   Tests the Controller Multiton Factory Method
 */
 func TestGetInstance(t *testing.T) {
@@ -31,7 +31,7 @@ func TestGetInstance(t *testing.T) {
 	}
 }
 
-/**
+/*
   Tests Command registration and execution.
 
   This test gets a Multiton Controller instance
@@ -64,7 +64,7 @@ func TestRegisterAndExecuteCommand(t *testing.T) {
 	}
 }
 
-/**
+/*
   Tests Command registration and removal.
 
   Tests that once a Command is registered and verified
@@ -106,7 +106,7 @@ func TestRegisterAndRemoveCommand(t *testing.T) {
 	}
 }
 
-/**
+/*
   Test hasCommand method.
 */
 func TestHasCommand(t *testing.T) {
@@ -128,7 +128,7 @@ func TestHasCommand(t *testing.T) {
 	}
 }
 
-/**
+/*
   Tests Removing and Reregistering a Command
 
   Tests that when a Command is re-registered that it isn't fired twice.

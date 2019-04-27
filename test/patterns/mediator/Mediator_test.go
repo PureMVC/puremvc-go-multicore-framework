@@ -14,11 +14,11 @@ import (
 	"testing"
 )
 
-/**
+/*
 Test the PureMVC Mediator class.
 */
 
-/**
+/*
   Tests getting the name using Mediator class accessor method.
 */
 func TestNameAccessor(t *testing.T) {
@@ -28,7 +28,7 @@ func TestNameAccessor(t *testing.T) {
 	}
 }
 
-/**
+/*
   Tests getting the name using Mediator class accessor method.
 */
 func TestViewAccessor(t *testing.T) {

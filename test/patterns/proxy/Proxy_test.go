@@ -14,11 +14,11 @@ import (
 	"testing"
 )
 
-/**
+/*
 Test the PureMVC Proxy class.
 */
 
-/**
+/*
   Tests getting the name using Proxy class accessor method. Setting can only be done in constructor.
 */
 func TestNameAccessor(t *testing.T) {
@@ -31,7 +31,7 @@ func TestNameAccessor(t *testing.T) {
 	}
 }
 
-/**
+/*
   Tests setting and getting the data using Proxy class accessor methods.
 */
 func TestDataAccessor(t *testing.T) {
@@ -56,7 +56,7 @@ func TestDataAccessor(t *testing.T) {
 	}
 }
 
-/**
+/*
   Tests setting the name and body using the Notification class Constructor.
 */
 func TestConstructor(t *testing.T) {

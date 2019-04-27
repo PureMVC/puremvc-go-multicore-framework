@@ -8,7 +8,7 @@
 
 package command
 
-/**
+/*
 A utility class used by MacroCommandTest.
 */
 type MacroCommandTestVO struct {

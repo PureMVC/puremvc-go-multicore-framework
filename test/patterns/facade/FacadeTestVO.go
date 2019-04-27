@@ -8,7 +8,7 @@
 
 package facade
 
-/**
+/*
 A utility class used by FacadeTest.
 */
 type FacadeTestVO struct {
