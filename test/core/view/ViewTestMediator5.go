@@ -16,16 +16,16 @@ import (
 const ViewTestMediator5_NAME = "viewTestMediator5"
 
 /*
-A Mediator class used by ViewTest.
+ViewTestMediator5 A Mediator class used by ViewTest.
 */
 type ViewTestMediator5 struct {
 	mediator.Mediator
 }
 
-func (mediator *ViewTestMediator5) ListNotificationInterests() []string {
+func (self *ViewTestMediator5) ListNotificationInterests() []string {
 	return []string{VIEWTEST_NOTE5}
 }
 
-func (mediator *ViewTestMediator5) HandleNotification(notification interfaces.INotification) {
-	mediator.ViewComponent.(*Data).counter++
+func (self *ViewTestMediator5) HandleNotification(notification interfaces.INotification) {
+	self.ViewComponent.(*Data).counter++
 }

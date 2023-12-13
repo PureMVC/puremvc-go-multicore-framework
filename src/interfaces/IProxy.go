@@ -9,7 +9,7 @@
 package interfaces
 
 /*
-The interface definition for a PureMVC Proxy.
+IProxy The interface definition for a PureMVC Proxy.
 
 In PureMVC, IProxy implementors assume these responsibilities:
 
@@ -43,7 +43,7 @@ type IProxy interface {
 	SetData(data interface{})
 
 	/*
-	Get the data object
+		Get the data object
 	*/
 	GetData() interface{}
 

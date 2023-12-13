@@ -9,7 +9,7 @@
 package interfaces
 
 /*
-The interface definition for a PureMVC Facade.
+IFacade The interface definition for a PureMVC Facade.
 
 The Facade Pattern suggests providing a single
 class to act as a central point of communication
@@ -37,12 +37,12 @@ type IFacade interface {
 	InitializeController()
 
 	/*
-	Initialize the Model.
+		Initialize the Model.
 	*/
 	InitializeModel()
 
 	/*
-	Initialize the View.
+		Initialize the View.
 	*/
 	InitializeView()
 
@@ -50,9 +50,9 @@ type IFacade interface {
 	  Register an ICommand with the Controller.
 
 	  - parameter noteName: the name of the INotification to associate the ICommand with.
-	  - parameter commandFunc: reference that returns ICommand
+	  - parameter factory: reference that returns ICommand
 	*/
-	RegisterCommand(notificationName string, commandFunc func() ICommand)
+	RegisterCommand(notificationName string, factory func() ICommand)
 
 	/*
 	  Remove a previously registered ICommand to INotification mapping from the Controller.

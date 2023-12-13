@@ -16,7 +16,7 @@ import (
 )
 
 /*
-A Multiton IController implementation.
+Controller A Multiton IController implementation.
 
 In PureMVC, the Controller class follows the
 'Command and Controller' strategy, and assumes these
@@ -48,39 +48,39 @@ var instanceMap = map[string]interfaces.IController{} // The Multiton Controller
 var instanceMapMutex sync.RWMutex                     // instanceMap Mutex
 
 /*
-  Controller Multiton Factory method.
+GetInstance Controller Multiton Factory method.
 
-  - parameter key: multitonKey
+- parameter key: multitonKey
 
-  - parameter controllerFunc: reference that returns IController
+- parameter factory reference that returns IController
 
-  - returns: the Multiton instance
+- returns: the Multiton instance
 */
-func GetInstance(key string, controllerFunc func() interfaces.IController) interfaces.IController {
+func GetInstance(key string, factory func() interfaces.IController) interfaces.IController {
 	instanceMapMutex.Lock()
 	defer instanceMapMutex.Unlock()
 
 	if instanceMap[key] == nil {
-		instanceMap[key] = controllerFunc()
+		instanceMap[key] = factory()
 		instanceMap[key].InitializeController()
 	}
 	return instanceMap[key]
 }
 
 /*
-	Initialize the Singleton Controller instance.
+InitializeController Initialize the Singleton Controller instance.
 
-	Called automatically by the GetInstance.
+Called automatically by the GetInstance.
 
-	Note that if you are using a subclass of View
-	in your application, you should also subclass Controller
-	and override the InitializeController method in the
-	following way:
+Note that if you are using a subclass of View
+in your application, you should also subclass Controller
+and override the InitializeController method in the
+following way:
 
-	 func (self *MyController) InitializeController() {
-	   self.commandMap = map[string]func() interfaces.ICommand{}
-	   self.view = MyView.GetInstance(self.Key, func() interfaces.IView { return &MyView{Key: self.Key} })
-	 }
+	func (self *MyController) InitializeController() {
+	  self.commandMap = map[string]func() interfaces.ICommand{}
+	  self.view = MyView.GetInstance(self.Key, func() interfaces.IView { return &MyView{Key: self.Key} })
+	}
 */
 func (self *Controller) InitializeController() {
 	self.commandMap = map[string]func() interfaces.ICommand{}
@@ -88,55 +88,55 @@ func (self *Controller) InitializeController() {
 }
 
 /*
-  If an ICommand has previously been registered
-  to handle a the given INotification, then it is executed.
+ExecuteCommand If an ICommand has previously been registered
+to handle a the given INotification, then it is executed.
 
-  - parameter note: an INotification
+- parameter note: an INotification
 */
 func (self *Controller) ExecuteCommand(notification interfaces.INotification) {
 	self.commandMapMutex.RLock()
 	defer self.commandMapMutex.RUnlock()
 
-	var commandFunc = self.commandMap[notification.Name()]
-	if commandFunc == nil {
+	var factory = self.commandMap[notification.Name()]
+	if factory == nil {
 		return
 	}
-	commandInstance := commandFunc()
+	commandInstance := factory()
 	commandInstance.InitializeNotifier(self.Key)
 	commandInstance.Execute(notification)
 }
 
 /*
-  Register a particular ICommand class as the handler
-  for a particular INotification.
+RegisterCommand Register a particular ICommand class as the handler
+for a particular INotification.
 
-  If an ICommand has already been registered to
-  handle INotifications with this name, it is no longer
-  used, the new ICommand is used instead.
+If an ICommand has already been registered to
+handle INotifications with this name, it is no longer
+used, the new ICommand is used instead.
 
-  The Observer for the new ICommand is only created if this the
-  first time an ICommand has been regisered for this Notification name.
+The Observer for the new ICommand is only created if this the
+first time an ICommand has been regisered for this Notification name.
 
-  - parameter notificationName: the name of the INotification
+- parameter notificationName: the name of the INotification
 
-  - parameter commandFunc: reference that returns ICommand
+- parameter factory: reference that returns ICommand
 */
-func (self *Controller) RegisterCommand(notificationName string, commandFunc func() interfaces.ICommand) {
+func (self *Controller) RegisterCommand(notificationName string, factory func() interfaces.ICommand) {
 	self.commandMapMutex.Lock()
 	defer self.commandMapMutex.Unlock()
 
 	if self.commandMap[notificationName] == nil {
 		self.view.RegisterObserver(notificationName, &observer.Observer{Notify: self.ExecuteCommand, Context: self})
 	}
-	self.commandMap[notificationName] = commandFunc
+	self.commandMap[notificationName] = factory
 }
 
 /*
-  Check if a Command is registered for a given Notification
+HasCommand Check if a Command is registered for a given Notification
 
-  - parameter notificationName:
+- parameter notificationName:
 
-  - returns: whether a Command is currently registered for the given notificationName.
+- returns: whether a Command is currently registered for the given notificationName.
 */
 func (self *Controller) HasCommand(notificationName string) bool {
 	self.commandMapMutex.RLock()
@@ -146,9 +146,9 @@ func (self *Controller) HasCommand(notificationName string) bool {
 }
 
 /*
-  Remove a previously registered ICommand to INotification mapping.
+RemoveCommand Remove a previously registered ICommand to INotification mapping.
 
-  - parameter notificationName: the name of the INotification to remove the ICommand mapping for
+- parameter notificationName: the name of the INotification to remove the ICommand mapping for
 */
 func (self *Controller) RemoveCommand(notificationName string) {
 	self.commandMapMutex.Lock()
@@ -161,9 +161,9 @@ func (self *Controller) RemoveCommand(notificationName string) {
 }
 
 /*
-  Remove an IController instance
+RemoveController Remove an IController instance
 
-  - parameter multitonKey: of IController instance to remove
+- parameter multitonKey: of IController instance to remove
 */
 func RemoveController(key string) {
 	instanceMapMutex.Lock()

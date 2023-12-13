@@ -14,18 +14,18 @@ import (
 )
 
 /*
-A SimpleCommand subclass used by FacadeTest.
+FacadeTestCommand A SimpleCommand subclass used by FacadeTest.
 */
 type FacadeTestCommand struct {
 	command.SimpleCommand
 }
 
 /*
-  Fabricate a result by multiplying the input by 2
+Execute Fabricate a result by multiplying the input by 2
 
-  - parameter note: the Notification carrying the FacadeTestVO
+- parameter note: the Notification carrying the FacadeTestVO
 */
-func (facade *FacadeTestCommand) Execute(notification interfaces.INotification) {
+func (self *FacadeTestCommand) Execute(notification interfaces.INotification) {
 	var vo = notification.Body().(*FacadeTestVO)
 
 	// Fabricate a Result

@@ -14,18 +14,18 @@ import (
 )
 
 /*
-  A SimpleCommand subclass used by ControllerTest.
+ControllerTestCommand A SimpleCommand subclass used by ControllerTest.
 */
 type ControllerTestCommand struct {
 	command.SimpleCommand
 }
 
 /*
-  Fabricate a result by multiplying the input by 2
+Execute Fabricate a result by multiplying the input by 2
 
-  - parameter note: the note carrying the ControllerTestVO
+- parameter note: the note carrying the ControllerTestVO
 */
-func (controller *ControllerTestCommand) Execute(notification interfaces.INotification) {
+func (self *ControllerTestCommand) Execute(notification interfaces.INotification) {
 	var vo = notification.Body().(*ControllerTestVO)
 
 	// Fabricate a result

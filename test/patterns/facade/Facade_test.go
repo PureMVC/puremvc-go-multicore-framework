@@ -22,37 +22,37 @@ Test the PureMVC Facade class.
 
 func TestGetInstance(t *testing.T) {
 	// Test Factory Method
-	var facade = facade.GetInstance("FacadeTestKey1", func() interfaces.IFacade { return &facade.Facade{Key: "FacadeTestKey1"} })
+	var f = facade.GetInstance("FacadeTestKey1", func() interfaces.IFacade { return &facade.Facade{Key: "FacadeTestKey1"} })
 
 	// test assertions
-	if facade == nil {
+	if f == nil {
 		t.Error("Expecting instance not nil")
 	}
 }
 
 /*
-  Tests Command registration and execution via the Facade.
+Tests Command registration and execution via the Facade.
 
-  This test gets a Multiton Facade instance
-  and registers the FacadeTestCommand class
-  to handle 'FacadeTest' Notifcations.
+This test gets a Multiton Facade instance
+and registers the FacadeTestCommand class
+to handle 'FacadeTest' Notifications.
 
-  It then sends a notification using the Facade.
-  Success is determined by evaluating
-  a property on an object placed in the body of
-  the Notification, which will be modified by the Command.
+It then sends a notification using the Facade.
+Success is determined by evaluating
+a property on an object placed in the body of
+the Notification, which will be modified by the Command.
 */
 func TestRegisterCommandAndSendNotification(t *testing.T) {
 	// Create the Facade, register the FacadeTestCommand to
 	// handle 'FacadeTest' notifications
-	var facade = facade.GetInstance("FacadeTestKey2", func() interfaces.IFacade { return &facade.Facade{Key: "FacadeTestKey2"} })
-	facade.RegisterCommand("FacadeTestNote", func() interfaces.ICommand { return &FacadeTestCommand{} })
+	var f = facade.GetInstance("FacadeTestKey2", func() interfaces.IFacade { return &facade.Facade{Key: "FacadeTestKey2"} })
+	f.RegisterCommand("FacadeTestNote", func() interfaces.ICommand { return &FacadeTestCommand{} })
 
 	// Send notification. The Command associated with the event
 	// (FacadeTestCommand) will be invoked, and will multiply
 	// the vo.input value by 2 and set the result on vo.result
 	var vo = FacadeTestVO{Input: 32}
-	facade.SendNotification("FacadeTestNote", &vo, "")
+	f.SendNotification("FacadeTestNote", &vo, "")
 
 	// test assertions
 	if vo.Result != 64 {
@@ -61,29 +61,29 @@ func TestRegisterCommandAndSendNotification(t *testing.T) {
 }
 
 /*
-  Tests Command removal via the Facade.
+Tests Command removal via the Facade.
 
-  This test gets a Multiton Facade instance
-  and registers the FacadeTestCommand class
-  to handle 'FacadeTest' Notifcations. Then it removes the command.
+This test gets a Multiton Facade instance
+and registers the FacadeTestCommand class
+to handle 'FacadeTest' Notifications. Then it removes the command.
 
-  It then sends a Notification using the Facade.
-  Success is determined by evaluating
-  a property on an object placed in the body of
-  the Notification, which will NOT be modified by the Command.
+It then sends a Notification using the Facade.
+Success is determined by evaluating
+a property on an object placed in the body of
+the Notification, which will NOT be modified by the Command.
 */
 func TestRegisterAndRemoveCommandAndSendNotification(t *testing.T) {
 	// Create the Facade, register the FacadeTestCommand to
 	// handle 'FacadeTest' events
-	var facade = facade.GetInstance("FacadeTestKey3", func() interfaces.IFacade { return &facade.Facade{Key: "FacadeTestKey2"} })
-	facade.RegisterCommand("FacadeTestNote", func() interfaces.ICommand { return &FacadeTestCommand{} })
-	facade.RemoveCommand("FacadeTestNote")
+	var f = facade.GetInstance("FacadeTestKey3", func() interfaces.IFacade { return &facade.Facade{Key: "FacadeTestKey2"} })
+	f.RegisterCommand("FacadeTestNote", func() interfaces.ICommand { return &FacadeTestCommand{} })
+	f.RemoveCommand("FacadeTestNote")
 
 	// Send notification. The Command associated with the event
 	// (FacadeTestCommand) will NOT be invoked, and will NOT multiply
 	// the vo.input value by 2
 	var vo = FacadeTestVO{Input: 32}
-	facade.SendNotification("FacadeTestNote", &vo, "")
+	f.SendNotification("FacadeTestNote", &vo, "")
 
 	// test assertions
 	if vo.Result == 64 {
@@ -92,23 +92,23 @@ func TestRegisterAndRemoveCommandAndSendNotification(t *testing.T) {
 }
 
 /*
-  Tests the regsitering and retrieving Model proxies via the Facade.
+Tests the regsitering and retrieving Model proxies via the Facade.
 
-  Tests registerProxy and retrieveProxy in the same test.
-  These methods cannot currently be tested separately
-  in any meaningful way other than to show that the
-  methods do not throw exception when called.
+Tests registerProxy and retrieveProxy in the same test.
+These methods cannot currently be tested separately
+in any meaningful way other than to show that the
+methods do not throw exception when called.
 */
 func TestRegisterAndRetrieveProxy(t *testing.T) {
 	// register a proxy and retrieve it.
-	var facade = facade.GetInstance("FacadeTestKey4", func() interfaces.IFacade {
+	var f = facade.GetInstance("FacadeTestKey4", func() interfaces.IFacade {
 		return &facade.Facade{Key: "FacadeTestKey4"}
 	})
-	facade.RegisterProxy(&proxy.Proxy{Name: "colors", Data: []string{"red", "green", "blue"}})
-	var proxy = facade.RetrieveProxy("colors").(*proxy.Proxy)
+	f.RegisterProxy(&proxy.Proxy{Name: "colors", Data: []string{"red", "green", "blue"}})
+	var p = f.RetrieveProxy("colors").(*proxy.Proxy)
 
 	// retrieve data from proxy
-	var data = proxy.Data.([]string)
+	var data = p.Data.([]string)
 
 	// test assertions
 	if data == nil {
@@ -129,7 +129,7 @@ func TestRegisterAndRetrieveProxy(t *testing.T) {
 }
 
 /*
-  Tests the removing Proxies via the Facade.
+Tests the removing Proxies via the Facade.
 */
 func TestRegisterAndRemoveProxy(t *testing.T) {
 	// register a proxy, remove it, then try to retrieve it
@@ -156,7 +156,7 @@ func TestRegisterAndRemoveProxy(t *testing.T) {
 }
 
 /*
-  Tests registering, retrieving and removing Mediators via the Facade.
+Tests registering, retrieving and removing Mediators via the Facade.
 */
 func TestRegisterRetrieveAndRemoveMediator(t *testing.T) {
 	// register a mediator, remove it, then try to retrieve it
@@ -183,7 +183,7 @@ func TestRegisterRetrieveAndRemoveMediator(t *testing.T) {
 }
 
 /*
-  Tests the hasProxy Method
+Tests the hasProxy Method
 */
 func TestHasProxy(t *testing.T) {
 	// register a Proxy
@@ -198,7 +198,7 @@ func TestHasProxy(t *testing.T) {
 }
 
 /*
-  Tests the hasMediator Method
+Tests the hasMediator Method
 */
 func TestHasMediator(t *testing.T) {
 	// register a Mediator
@@ -221,7 +221,7 @@ func TestHasMediator(t *testing.T) {
 }
 
 /*
-  Test hasCommand method.
+Test hasCommand method.
 */
 func TestHasCommand(t *testing.T) {
 	// register the ControllerTestCommand to handle 'hasCommandTest' notes
@@ -245,7 +245,7 @@ func TestHasCommand(t *testing.T) {
 }
 
 /*
-  Tests the hasCore and removeCore methods
+Tests the hasCore and removeCore methods
 */
 func TestHasCoreAndRemoveCore(t *testing.T) {
 	// assert that the Facade.hasCore method returns false first

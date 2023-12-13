@@ -9,7 +9,7 @@
 package interfaces
 
 /*
-The interface definition for a PureMVC Model.
+IModel The interface definition for a PureMVC Model.
 
 In PureMVC, IModel implementors provide
 access to IProxy objects by named lookup.

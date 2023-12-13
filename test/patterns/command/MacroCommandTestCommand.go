@@ -14,22 +14,22 @@ import (
 )
 
 /*
-A MacroCommand subclass used by MacroCommandTest.
+MacroCommandTestCommand A MacroCommand subclass used by MacroCommandTest.
 */
 type MacroCommandTestCommand struct {
 	command.MacroCommand
 }
 
 /*
-  Initialize the MacroCommandTestCommand by adding
-  its 2 SubCommands.
+InitializeMacroCommand Initialize the MacroCommandTestCommand by adding
+its 2 SubCommands.
 */
-func (command *MacroCommandTestCommand) InitializeMacroCommand() {
-	command.AddSubCommand(func() interfaces.ICommand { return &MacroCommandTestSub1Command{} })
-	command.AddSubCommand(func() interfaces.ICommand { return &MacroCommandTestSub2Command{} })
+func (self *MacroCommandTestCommand) InitializeMacroCommand() {
+	self.AddSubCommand(func() interfaces.ICommand { return &MacroCommandTestSub1Command{} })
+	self.AddSubCommand(func() interfaces.ICommand { return &MacroCommandTestSub2Command{} })
 }
 
-func (command *MacroCommandTestCommand) Execute(notification interfaces.INotification) {
-	command.InitializeMacroCommand()           // AddSubCommands
-	command.MacroCommand.Execute(notification) // Execute SubCommands
+func (self *MacroCommandTestCommand) Execute(notification interfaces.INotification) {
+	self.InitializeMacroCommand()           // AddSubCommands
+	self.MacroCommand.Execute(notification) // Execute SubCommands
 }

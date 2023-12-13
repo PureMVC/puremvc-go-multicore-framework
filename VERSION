@@ -1,10 +1,12 @@
 PureMVC MultiCore Framework for Go
 --------------------------------------------------------------------------
-Release Date: 04/25/19
+Release Date: 12/12/23
     Platform: Go
      Version: 1
-    Revision: 0
+    Revision: 1
        Minor: 0
       Author: Saad Shams <saad.shams@puremvc.org>
 --------------------------------------------------------------------------
 1.0 - Initial release.
+
+1.1 - Updated to use Go 1.21. Minor Updates.

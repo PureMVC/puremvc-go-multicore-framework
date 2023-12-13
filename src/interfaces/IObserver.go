@@ -9,7 +9,7 @@
 package interfaces
 
 /*
-The interface definition for a PureMVC Observer.
+IObserver The interface definition for a PureMVC Observer.
 
 In PureMVC, IObserver implementors assume these responsibilities:
 

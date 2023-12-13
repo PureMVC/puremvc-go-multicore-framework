@@ -9,7 +9,7 @@
 package command
 
 /*
-A utility class used by SimpleCommandTest.
+SimpleCommandTestVO A utility class used by SimpleCommandTest.
 */
 type SimpleCommandTestVO struct {
 	Input  int

@@ -9,7 +9,7 @@
 package command
 
 /*
-A utility class used by MacroCommandTest.
+MacroCommandTestVO A utility class used by MacroCommandTest.
 */
 type MacroCommandTestVO struct {
 	Input   int

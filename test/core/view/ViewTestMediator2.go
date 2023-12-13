@@ -16,18 +16,18 @@ import (
 const ViewTestMediator2_NAME = "viewTestMediator2"
 
 /*
-A Mediator class used by ViewTest.
+ViewTestMediator2 A Mediator class used by ViewTest.
 */
 type ViewTestMediator2 struct {
 	mediator.Mediator
 }
 
-func (mediator *ViewTestMediator2) ListNotificationInterests() []string {
+func (self *ViewTestMediator2) ListNotificationInterests() []string {
 	// be sure that the mediator has some Observers created
 	// in order to test removeMediator
 	return []string{VIEWTEST_NOTE1, VIEWTEST_NOTE2}
 }
 
-func (mediator *ViewTestMediator2) HandleNotification(notification interfaces.INotification) {
-	mediator.ViewComponent.(*Data).lastNotification = notification.Name()
+func (self *ViewTestMediator2) HandleNotification(notification interfaces.INotification) {
+	self.ViewComponent.(*Data).lastNotification = notification.Name()
 }

@@ -14,9 +14,9 @@ import (
 )
 
 /*
-A base ICommand implementation that executes other ICommands.
+MacroCommand A base ICommand implementation that executes other ICommands.
 
-A MacroCommand maintains an list of
+A MacroCommand maintains a list of
 ICommand Class references called SubCommands.
 
 When execute is called, the MacroCommand
@@ -38,54 +38,54 @@ type MacroCommand struct {
 }
 
 /*
-	Initialize the MacroCommand.
+InitializeMacroCommand Initialize the MacroCommand.
 
-	In your subclass, override this method to
-	initialize the MacroCommand's *SubCommand*
-	list with func references like
-	this:
+In your subclass, override this method to
+initialize the MacroCommand's *SubCommand*
+list with func references like
+this:
 
-	 // Initialize MyMacroCommand
-	 func (self *MacroCommandTestCommand) InitializeMacroCommand() {
-	   self.AddSubCommand(func() interfaces.ICommand { return &FirstCommand{} })
-	   self.AddSubCommand(func() interfaces.ICommand { return &SecondCommand{} })
-	   self.AddSubCommand(func() interfaces.ICommand { return &ThirdCommand{} })
-	 }
+	// Initialize MyMacroCommand
+	func (self *MacroCommandTestCommand) InitializeMacroCommand() {
+	  self.AddSubCommand(func() interfaces.ICommand { return &FirstCommand{} })
+	  self.AddSubCommand(func() interfaces.ICommand { return &SecondCommand{} })
+	  self.AddSubCommand(func() interfaces.ICommand { return &ThirdCommand{} })
+	}
 
-	Note that SubCommands may be any func returning ICommand
-	implementor, MacroCommands or SimpleCommands are both acceptable.
+Note that SubCommands may be any func returning ICommand
+implementor, MacroCommands or SimpleCommands are both acceptable.
 */
 func (self *MacroCommand) InitializeMacroCommand() {
 
 }
 
 /*
-  Add a SubCommand.
+AddSubCommand Add a SubCommand.
 
-  The SubCommands will be called in First In/First Out (FIFO)
-  order.
+The SubCommands will be called in First In/First Out (FIFO)
+order.
 
-  - parameter func: reference that returns ICommand.
+- parameter factory: reference that returns ICommand.
 */
-func (self *MacroCommand) AddSubCommand(commandFunc func() interfaces.ICommand) {
-	self.SubCommands = append(self.SubCommands, commandFunc)
+func (self *MacroCommand) AddSubCommand(factory func() interfaces.ICommand) {
+	self.SubCommands = append(self.SubCommands, factory)
 }
 
 /*
-  Execute this MacroCommand's SubCommands.
+Execute this MacroCommand's SubCommands.
 
-  The SubCommands will be called in First In/First Out (FIFO)
-  order.
+The SubCommands will be called in First In/First Out (FIFO)
+order.
 
-  - parameter notification: the INotification object to be passsed to each SubCommand.
+- parameter notification: the INotification object to be passsed to each SubCommand.
 */
 func (self *MacroCommand) Execute(notification interfaces.INotification) {
 	self.InitializeMacroCommand()
 	for len(self.SubCommands) > 0 {
-		commandClassRef := self.SubCommands[0]
+		factory := self.SubCommands[0]
 		self.SubCommands = self.SubCommands[1:]
 
-		commandInstance := commandClassRef()
+		commandInstance := factory()
 		commandInstance.InitializeNotifier(self.Key)
 		commandInstance.Execute(notification)
 	}

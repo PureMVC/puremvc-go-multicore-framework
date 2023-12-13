@@ -14,15 +14,15 @@ import (
 	"sync"
 )
 
-/**
-A Multiton IView implementation.
+/*
+View A Multiton IView implementation.
 In PureMVC, the View class assumes these responsibilities:
 
 * Maintain a cache of IMediator instances.
 
 * Provide methods for registering, retrieving, and removing IMediators.
 
-* Notifiying IMediators when they are registered or removed.
+* Notifying IMediators when they are registered or removed.
 
 * Managing the observer lists for each INotification in the application.
 
@@ -44,32 +44,32 @@ var instanceMap = map[string]interfaces.IView{} // The Multiton View instanceMap
 var instanceMapMutex = sync.RWMutex{}           // instanceMapMutex
 
 /*
-  View Multiton Factory method.
+GetInstance View Multiton Factory method.
 
-  - parameter key: multitonKey
+- parameter key: multitonKey
 
-  - parameter viewFunc: reference that returns IView
+- parameter factory: reference that returns IView
 
-  - returns: the Multiton instance returned by executing the passed viewFunc
+- returns: the Multiton instance returned by executing the passed factory
 */
-func GetInstance(key string, viewFunc func() interfaces.IView) interfaces.IView {
+func GetInstance(key string, factory func() interfaces.IView) interfaces.IView {
 	instanceMapMutex.Lock()
 	defer instanceMapMutex.Unlock()
 
 	if instanceMap[key] == nil {
-		instanceMap[key] = viewFunc()
+		instanceMap[key] = factory()
 		instanceMap[key].InitializeView()
 	}
 	return instanceMap[key]
 }
 
 /*
-  Initialize the Multiton View instance.
+InitializeView Initialize the Multiton View instance.
 
-  Called automatically by the GetInstance, this
-  is your opportunity to initialize the Multiton
-  instance in your subclass without overriding the
-  constructor.
+Called automatically by the GetInstance, this
+is your opportunity to initialize the Multiton
+instance in your subclass without overriding the
+constructor.
 */
 func (self *View) InitializeView() {
 	self.mediatorMap = map[string]interfaces.IMediator{}
@@ -77,12 +77,12 @@ func (self *View) InitializeView() {
 }
 
 /*
-  Register an IObserver to be notified
-  of INotifications with a given name.
+RegisterObserver Register an IObserver to be notified
+of INotifications with a given name.
 
-  - parameter notificationName: the name of the INotifications to notify this IObserver of
+- parameter notificationName: the name of the INotifications to notify this IObserver of
 
-  - parameter observer: the IObserver to register
+- parameter observer: the IObserver to register
 */
 func (self *View) RegisterObserver(notificationName string, observer interfaces.IObserver) {
 	self.observerMapMutex.Lock()
@@ -96,13 +96,13 @@ func (self *View) RegisterObserver(notificationName string, observer interfaces.
 }
 
 /*
-  Notify the IObservers for a particular INotification.
+NotifyObservers Notify the IObservers for a particular INotification.
 
-  All previously attached IObservers for this INotification's
-  list are notified and are passed a reference to the INotification in
-  the order in which they were registered.
+All previously attached IObservers for this INotification's
+list are notified and are passed a reference to the INotification in
+the order in which they were registered.
 
-  - parameter notification: the INotification to notify IObservers of.
+- parameter notification: the INotification to notify IObservers of.
 */
 func (self *View) NotifyObservers(notification interfaces.INotification) {
 	self.observerMapMutex.RLock()
@@ -127,11 +127,11 @@ func (self *View) NotifyObservers(notification interfaces.INotification) {
 }
 
 /*
-  Remove the observer for a given notifyContext from an observer list for a given Notification name.
+RemoveObserver Remove the observer for a given notifyContext from an observer list for a given Notification name.
 
-  - parameter notificationName: which observer list to remove from
+- parameter notificationName: which observer list to remove from
 
-  - parameter notifyContext: remove the observer with this object as its notifyContext
+- parameter notifyContext: remove the observer with this object as its notifyContext
 */
 func (self *View) RemoveObserver(notificationName string, notifyContext interface{}) {
 	self.observerMapMutex.Lock()
@@ -158,19 +158,19 @@ func (self *View) RemoveObserver(notificationName string, notifyContext interfac
 }
 
 /*
-  Register an IMediator instance with the View.
+RegisterMediator Register an IMediator instance with the View.
 
-  Registers the IMediator so that it can be retrieved by name,
-  and further interrogates the IMediator for its
-  INotification interests.
+Registers the IMediator so that it can be retrieved by name,
+and further interrogates the IMediator for its
+INotification interests.
 
-  If the IMediator returns any INotification
-  names to be notified about, an Observer is created encapsulating
-  the IMediator instance's handleNotification method
-  and registering it as an Observer for all INotifications the
-  IMediator is interested in.
+If the IMediator returns any INotification
+names to be notified about, an Observer is created encapsulating
+the IMediator instance's handleNotification method
+and registering it as an Observer for all INotifications the
+IMediator is interested in.
 
-  - parameter mediator: a reference to the IMediator instance
+- parameter mediator: a reference to the IMediator instance
 */
 func (self *View) RegisterMediator(mediator interfaces.IMediator) {
 	self.mediatorMapMutex.Lock()
@@ -191,7 +191,7 @@ func (self *View) RegisterMediator(mediator interfaces.IMediator) {
 
 	// Register Mediator as an observer for each notification of interests
 	if len(interests) > 0 {
-		// Create Observer referencing this mediator's handlNotification method
+		// Create Observer referencing this mediator's handleNotification method
 		observer := &observer.Observer{Notify: mediator.HandleNotification, Context: mediator}
 
 		// Register Mediator as Observer for its list of Notification interests
@@ -205,11 +205,11 @@ func (self *View) RegisterMediator(mediator interfaces.IMediator) {
 }
 
 /*
-  Retrieve an IMediator from the View.
+RetrieveMediator Retrieve an IMediator from the View.
 
-  - parameter mediatorName: the name of the IMediator instance to retrieve.
+- parameter mediatorName: the name of the IMediator instance to retrieve.
 
-  - returns: the IMediator instance previously registered with the given mediatorName.
+- returns: the IMediator instance previously registered with the given mediatorName.
 */
 func (self *View) RetrieveMediator(mediatorName string) interfaces.IMediator {
 	self.mediatorMapMutex.RLock()
@@ -219,11 +219,11 @@ func (self *View) RetrieveMediator(mediatorName string) interfaces.IMediator {
 }
 
 /*
-  Remove an IMediator from the View.
+RemoveMediator Remove an IMediator from the View.
 
-  - parameter mediatorName: name of the IMediator instance to be removed.
+- parameter mediatorName: name of the IMediator instance to be removed.
 
-  - returns: the IMediator that was removed from the View
+- returns: the IMediator that was removed from the View
 */
 func (self *View) RemoveMediator(mediatorName string) interfaces.IMediator {
 	self.mediatorMapMutex.Lock()
@@ -252,11 +252,11 @@ func (self *View) RemoveMediator(mediatorName string) interfaces.IMediator {
 }
 
 /*
-  Check if a Mediator is registered or not
+HasMediator Check if a Mediator is registered or not
 
-  - parameter mediatorName:
+- parameter mediatorName:
 
-  - returns: whether a Mediator is registered with the given mediatorName.
+- returns: whether a Mediator is registered with the given mediatorName.
 */
 func (self *View) HasMediator(mediatorName string) bool {
 	self.mediatorMapMutex.RLock()
@@ -266,9 +266,9 @@ func (self *View) HasMediator(mediatorName string) bool {
 }
 
 /*
-  Remove an IView instance
+RemoveView Remove an IView instance
 
-  - parameter multitonKey: of IView instance to remove
+- parameter multitonKey: of IView instance to remove
 */
 func RemoveView(key string) {
 	instanceMapMutex.Lock()

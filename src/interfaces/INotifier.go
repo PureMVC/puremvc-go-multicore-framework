@@ -9,7 +9,7 @@
 package interfaces
 
 /*
-The interface definition for a PureMVC Notifier.
+INotifier The interface definition for a PureMVC Notifier.
 
 MacroCommand, Command, Mediator and Proxy
 all have a need to send Notifications.

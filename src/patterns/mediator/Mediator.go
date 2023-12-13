@@ -16,7 +16,7 @@ import (
 const NAME = "Mediator" // default name for the mediator
 
 /*
-A base IMediator implementation.
+Mediator A base IMediator implementation.
 */
 type Mediator struct {
 	facade.Notifier
@@ -25,56 +25,56 @@ type Mediator struct {
 }
 
 /*
-  Get the name of the Mediator.
+GetMediatorName  Get the name of the Mediator.
 */
 func (self *Mediator) GetMediatorName() string {
 	return self.Name
 }
 
 /*
-  Get the IMediator's view component.
+GetViewComponent  Get the IMediator's view component.
 */
 func (self *Mediator) GetViewComponent() interface{} {
 	return self.ViewComponent
 }
 
 /*
-  Set the IMediator's view component.
+SetViewComponent  Set the IMediator's view component.
 */
 func (self *Mediator) SetViewComponent(viewComponent interface{}) {
 	self.ViewComponent = viewComponent
 }
 
 /*
-  List the INotification names this
-  Mediator is interested in being notified of.
+ListNotificationInterests  List the INotification names this
+Mediator is interested in being notified of.
 
-  - returns: Array the list of INotification names
+- returns: Array the list of INotification names
 */
 func (self *Mediator) ListNotificationInterests() []string {
 	return []string{}
 }
 
 /*
-  Handle INotifications.
+HandleNotification  Handle INotifications.
 
-  Typically this will be handled in a switch statement,
-  with one 'case' entry per INotification
-  the Mediator is interested in.
+Typically, this will be handled in a switch statement,
+with one 'case' entry per INotification
+the Mediator is interested in.
 */
 func (self *Mediator) HandleNotification(notification interfaces.INotification) {
 
 }
 
 /*
-  Called by the View when the Mediator is registered
+OnRegister Called by the View when the Mediator is registered
 */
 func (self *Mediator) OnRegister() {
 
 }
 
 /*
-  Called by the View when the Mediator is removed
+OnRemove Called by the View when the Mediator is removed
 */
 func (self *Mediator) OnRemove() {
 

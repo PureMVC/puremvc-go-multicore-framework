@@ -9,7 +9,7 @@
 package observer
 
 /*
-A base INotification implementation.
+Notification A base INotification implementation.
 
 PureMVC does not rely upon underlying event models such
 as the one provided with Flash, and ActionScript 3 does
@@ -43,7 +43,7 @@ type Notification struct {
 }
 
 /*
-Constructor.
+NewNotification Constructor.
 
 - parameter name: name of the Notification instance. (required)
 
@@ -56,44 +56,44 @@ func NewNotification(name string, body interface{}, _type string) *Notification 
 }
 
 /*
-  Get the name of notification instance
+Name  Get the name of notification instance
 */
 func (self *Notification) Name() string {
 	return self.name
 }
 
 /*
-  Get the body of notification instance
+Body  Get the body of notification instance
 */
 func (self *Notification) Body() interface{} {
 	return self.body
 }
 
 /*
-  Set the body of notification instance
+SetBody  Set the body of notification instance
 */
 func (self *Notification) SetBody(body interface{}) {
 	self.body = body
 }
 
 /*
-  Get the type of notification instance
+Type  Get the type of notification instance
 */
 func (self *Notification) Type() string {
 	return self._type
 }
 
 /*
-  Set the type of notification instance
+SetType  Set the type of notification instance
 */
 func (self *Notification) SetType(t string) {
 	self._type = t
 }
 
 /*
-  Get the string representation of the Notification instance.
+String  Get the string representation of the Notification instance.
 
-  - returns: the string representation of the Notification instance.
+- returns: the string representation of the Notification instance.
 */
 func (self *Notification) String() string {
 	msg := "Notification name: " + self.name

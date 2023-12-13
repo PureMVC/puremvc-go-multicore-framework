@@ -16,25 +16,25 @@ import (
 const ViewTestMediator6_NAME = "ViewTestMediator6" // The Mediator base name
 
 /*
-A Mediator class used by ViewTest.
+ViewTestMediator6 A Mediator class used by ViewTest.
 */
 type ViewTestMediator6 struct {
 	mediator.Mediator
 }
 
-func (mediator *ViewTestMediator6) ListNotificationInterests() []string {
+func (self *ViewTestMediator6) ListNotificationInterests() []string {
 	return []string{VIEWTEST_NOTE6}
 }
 
-func (mediator *ViewTestMediator6) HandleNotification(notification interfaces.INotification) {
+func (self *ViewTestMediator6) HandleNotification(notification interfaces.INotification) {
 	//temp implementation until facade is developed
-	mediator.Notifier.Facade.RemoveMediator(mediator.GetMediatorName())
+	self.Notifier.Facade.RemoveMediator(self.GetMediatorName())
 	//var view2 = view.GetInstance("ViewTestKey11", func() interfaces.IView {
 	//	return &view.View{Key: "ViewTestKey11"}
 	//})
 	//view2.RemoveMediator(mediator.GetMediatorName())
 }
 
-func (mediator *ViewTestMediator6) OnRemove() {
-	mediator.ViewComponent.(*Data).counter++
+func (self *ViewTestMediator6) OnRemove() {
+	self.ViewComponent.(*Data).counter++
 }

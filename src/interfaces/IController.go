@@ -9,7 +9,7 @@
 package interfaces
 
 /*
-The interface definition for a PureMVC Controller.
+IController The interface definition for a PureMVC Controller.
 
 In PureMVC, an IController implementor
 follows the 'Command and Controller' strategy, and
@@ -34,9 +34,9 @@ type IController interface {
 	  for a particular INotification.
 
 	  - parameter notificationName: the name of the INotification
-	  - parameter commandFunc: reference that returns ICommand
+	  - parameter factory: reference that returns ICommand
 	*/
-	RegisterCommand(notificationName string, commandFunc func() ICommand)
+	RegisterCommand(notificationName string, factory func() ICommand)
 
 	/*
 	  Execute the ICommand previously registered as the

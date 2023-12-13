@@ -52,11 +52,11 @@ func TestMacroCommandExecute(t *testing.T) {
 	var note = observer.NewNotification("MacroCommandTest", &vo, "")
 
 	// Create the SimpleCommand
-	var command = MacroCommandTestCommand{MacroCommand: command.MacroCommand{}}
-	command.Notifier.InitializeNotifier("test")
+	var mc = MacroCommandTestCommand{MacroCommand: command.MacroCommand{}}
+	mc.Notifier.InitializeNotifier("test")
 
 	// Execute the SimpleCommand
-	command.Execute(note)
+	mc.Execute(note)
 
 	// test assertions
 	if vo.Result1 != 10 {
@@ -68,17 +68,17 @@ func TestMacroCommandExecute(t *testing.T) {
 }
 
 /*
-  Testing MacroCommand via Controller and notify via View
+Testing MacroCommand via Controller and notify via View
 */
 func TestMacroCommandExecuteViaControllerView(t *testing.T) {
-	var controller = controller.GetInstance("MacroCommandTest2", func() interfaces.IController { return &controller.Controller{Key: "MacroCommandTest2"} })
-	var view = view.GetInstance("MacroCommandTest2", func() interfaces.IView { return &view.View{Key: "MacroCommandTest2"} })
+	var c = controller.GetInstance("MacroCommandTest2", func() interfaces.IController { return &controller.Controller{Key: "MacroCommandTest2"} })
+	var v = view.GetInstance("MacroCommandTest2", func() interfaces.IView { return &view.View{Key: "MacroCommandTest2"} })
 
-	controller.RegisterCommand("MacroCommandTestViaControllerView", func() interfaces.ICommand { return &MacroCommandTestCommand{} })
+	c.RegisterCommand("MacroCommandTestViaControllerView", func() interfaces.ICommand { return &MacroCommandTestCommand{} })
 
 	var vo = MacroCommandTestVO{Input: 5}
 	var note = observer.NewNotification("MacroCommandTestViaControllerView", &vo, "")
-	view.NotifyObservers(note)
+	v.NotifyObservers(note)
 
 	if vo.Result1 != 10 {
 		t.Error("Expecting vo.Result1 == 10")

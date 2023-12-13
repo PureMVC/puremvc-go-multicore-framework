@@ -9,7 +9,7 @@
 package interfaces
 
 /*
-The interface definition for a PureMVC Mediator.
+IMediator The interface definition for a PureMVC Mediator.
 
 In PureMVC, IMediator implementors assume these responsibilities:
 

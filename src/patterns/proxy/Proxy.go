@@ -13,7 +13,7 @@ import "github.com/puremvc/puremvc-go-multicore-framework/src/patterns/facade"
 const NAME = "Proxy" // default name for the proxy
 
 /*
-A base IProxy implementation.
+Proxy A base IProxy implementation.
 
 In PureMVC, Proxy classes are used to manage parts of the
 application's data model.
@@ -35,35 +35,35 @@ type Proxy struct {
 }
 
 /*
-  Get the proxy name
+GetProxyName  Get the proxy name
 */
 func (self *Proxy) GetProxyName() string {
 	return self.Name
 }
 
 /*
-  Set the data object
+SetData  Set the data object
 */
 func (self *Proxy) SetData(data interface{}) {
 	self.Data = data
 }
 
 /*
-  Get the data object
+GetData  Get the data object
 */
 func (self *Proxy) GetData() interface{} {
 	return self.Data
 }
 
 /*
-  Called by the Model when the Proxy is registered
+OnRegister  Called by the Model when the Proxy is registered
 */
 func (self *Proxy) OnRegister() {
 
 }
 
 /*
-  Called by the Model when the Proxy is removed
+OnRemove  Called by the Model when the Proxy is removed
 */
 func (self *Proxy) OnRemove() {
 

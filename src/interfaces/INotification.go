@@ -9,7 +9,7 @@
 package interfaces
 
 /*
-The interface definition for a PureMVC Notification.
+INotification The interface definition for a PureMVC Notification.
 
 PureMVC does not rely upon underlying event models such
 as the one provided with Flash, and ActionScript 3 does

@@ -13,16 +13,16 @@ import "github.com/puremvc/puremvc-go-multicore-framework/src/patterns/mediator"
 const ViewTestMediator4_NAME = "ViewTestMediator4"
 
 /*
-A Mediator class used by ViewTest.
+ViewTestMediator4 A Mediator class used by ViewTest.
 */
 type ViewTestMediator4 struct {
 	mediator.Mediator
 }
 
-func (mediator *ViewTestMediator4) OnRegister() {
-	mediator.ViewComponent.(*Data).onRegisterCalled = true
+func (self *ViewTestMediator4) OnRegister() {
+	self.ViewComponent.(*Data).onRegisterCalled = true
 }
 
-func (mediator *ViewTestMediator4) OnRemove() {
-	mediator.ViewComponent.(*Data).onRemoveCalled = true
+func (self *ViewTestMediator4) OnRemove() {
+	self.ViewComponent.(*Data).onRemoveCalled = true
 }

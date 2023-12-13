@@ -9,7 +9,7 @@
 package interfaces
 
 /*
-The interface definition for a PureMVC Command.
+ICommand The interface definition for a PureMVC Command.
 */
 type ICommand interface {
 	INotifier

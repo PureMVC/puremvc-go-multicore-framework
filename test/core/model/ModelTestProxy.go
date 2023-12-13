@@ -18,10 +18,10 @@ type ModelTestProxy struct {
 	proxy.Proxy
 }
 
-func (proxy *ModelTestProxy) OnRegister() {
-	proxy.SetData(ON_REGISTER_CALLED)
+func (self *ModelTestProxy) OnRegister() {
+	self.SetData(ON_REGISTER_CALLED)
 }
 
-func (proxy *ModelTestProxy) OnRemove() {
-	proxy.SetData(ON_REMOVE_CALLED)
+func (self *ModelTestProxy) OnRemove() {
+	self.SetData(ON_REMOVE_CALLED)
 }

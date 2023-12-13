@@ -19,27 +19,27 @@ Test the PureMVC Proxy class.
 */
 
 /*
-  Tests getting the name using Proxy class accessor method. Setting can only be done in constructor.
+Tests getting the name using Proxy class accessor method. Setting can only be done in constructor.
 */
 func TestNameAccessor(t *testing.T) {
 	// Create a new Proxy and use accessors to set the proxy name
-	var proxy interfaces.IProxy = &proxy.Proxy{Name: "TestProxy", Data: nil}
+	var p interfaces.IProxy = &proxy.Proxy{Name: "TestProxy", Data: nil}
 
 	// test assertions
-	if proxy.GetProxyName() != "TestProxy" {
+	if p.GetProxyName() != "TestProxy" {
 		t.Error("Expecting proxy.GetProxyName() == 'TestProxy'")
 	}
 }
 
 /*
-  Tests setting and getting the data using Proxy class accessor methods.
+Tests setting and getting the data using Proxy class accessor methods.
 */
 func TestDataAccessor(t *testing.T) {
 	// Create a new Proxy and use accessors to set the data
-	var proxy interfaces.IProxy = &proxy.Proxy{Name: "colors"}
-	proxy.SetData([]string{"red", "green", "blue"})
+	var p interfaces.IProxy = &proxy.Proxy{Name: "colors"}
+	p.SetData([]string{"red", "green", "blue"})
 
-	var data = proxy.GetData().([]string)
+	var data = p.GetData().([]string)
 
 	// test assertions
 	if len(data) != 3 {
@@ -57,19 +57,19 @@ func TestDataAccessor(t *testing.T) {
 }
 
 /*
-  Tests setting the name and body using the Notification class Constructor.
+Tests setting the name and body using the Notification class Constructor.
 */
 func TestConstructor(t *testing.T) {
 	// Create a new Proxy using the Constructor to set the name and data
-	var proxy interfaces.IProxy = &proxy.Proxy{Name: "colors", Data: []string{"red", "green", "blue"}}
+	var p interfaces.IProxy = &proxy.Proxy{Name: "colors", Data: []string{"red", "green", "blue"}}
 
-	var data = proxy.GetData().([]string)
+	var data = p.GetData().([]string)
 
 	// test assertions
-	if proxy == nil {
+	if p == nil {
 		t.Error("Expecting proxy not nil")
 	}
-	if proxy.GetProxyName() != "colors" {
+	if p.GetProxyName() != "colors" {
 		t.Error("Expecting proxy.GetProxyName() == 'colors'")
 	}
 	if len(data) != 3 {

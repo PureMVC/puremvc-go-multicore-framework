@@ -21,21 +21,3 @@ type ViewTestNote struct {
 func ViewTestNoteNew(body interface{}) interfaces.INotification {
 	return observer.NewNotification(ViewTestNote_NAME, body, "")
 }
-
-type ISuper interface{}
-
-type Super struct {
-	name string
-}
-
-func NewSuper(name string) ISuper {
-	return &Super{name: name}
-}
-
-type Sub struct {
-	Super
-}
-
-func NewSub(name string) ISuper {
-	return Sub{Super{name}}
-}

@@ -14,20 +14,20 @@ import (
 )
 
 /*
-A SimpleCommand subclass used by ControllerTest.
+ControllerTestCommand2 A SimpleCommand subclass used by ControllerTest.
 */
 type ControllerTestCommand2 struct {
 	command.SimpleCommand
 }
 
 /*
-  Fabricate a result by multiplying the input by 2 and adding to the existing result
+Execute Fabricate a result by multiplying the input by 2 and adding to the existing result
 
-  This tests accumulation effect that would show if the command were executed more than once.
+This tests accumulation effect that would show if the command were executed more than once.
 
-  - parameter note: the note carrying the ControllerTestVO
+- parameter note: the note carrying the ControllerTestVO
 */
-func (controller *ControllerTestCommand2) Execute(notification interfaces.INotification) {
+func (self *ControllerTestCommand2) Execute(notification interfaces.INotification) {
 	var vo = notification.Body().(*ControllerTestVO)
 
 	// Fabricate a result

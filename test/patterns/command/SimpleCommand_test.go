@@ -18,16 +18,16 @@ import (
 */
 
 /*
-  Tests the execute method of a SimpleCommand.
+Tests the execute method of a SimpleCommand.
 
-  This test creates a new Notification, adding a
-  SimpleCommandTestVO as the body.
-  It then creates a SimpleCommandTestCommand and invokes
-  its execute method, passing in the note.
+This test creates a new Notification, adding a
+SimpleCommandTestVO as the body.
+It then creates a SimpleCommandTestCommand and invokes
+its execute method, passing in the note.
 
-  Success is determined by evaluating a property on the
-  object that was passed on the Notification body, which will
-  be modified by the SimpleCommand.
+Success is determined by evaluating a property on the
+object that was passed on the Notification body, which will
+be modified by the SimpleCommand.
 */
 func TestSimpleCommandExecute(t *testing.T) {
 	// Create the VO
@@ -40,7 +40,7 @@ func TestSimpleCommandExecute(t *testing.T) {
 	var command = SimpleCommandTestCommand{}
 
 	// Execute the SimpleCommand
-	command.execute(note)
+	command.Execute(note)
 
 	// test assertions
 	if vo.Result != 10 {

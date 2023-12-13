@@ -9,7 +9,7 @@
 package interfaces
 
 /*
-The interface definition for a PureMVC View.
+IView The interface definition for a PureMVC View.
 
 In PureMVC, IView implementors assume these responsibilities:
 
